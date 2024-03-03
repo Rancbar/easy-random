@@ -188,6 +188,9 @@ class FieldPopulator {
         String typeName = null;
         try {
             typeName = actualTypeArgument.getTypeName();
+            if (typeName.contains("<")) {
+                typeName = typeName.substring(0, typeName.indexOf("<"));
+            }
             aClass = Class.forName(typeName);
         } catch (ClassNotFoundException e) {
             String message = String.format("Unable to load class %s of generic field %s in class %s. " +
